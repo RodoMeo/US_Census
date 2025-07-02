@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía PDF: Descarga de Datos de Industrias - U.S. Census Bureau</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            font-size: 12pt;
+        }
+        
+        @media print {
+            body { font-size: 10pt; }
+            .page-break { page-break-before: always; }
+            .no-print { display: none; }
+            .qr-code { width: 80px; height: 80px; }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 28pt;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .header .subtitle {
+            color: #5a6c7d;
+            font-size: 16pt;
+            margin-bottom: 15px;
+        }
+        
+        .header .date {
+            color: #7f8c8d;
+            font-size: 12pt;
+            font-style: italic;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            font-size: 18pt;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .step-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 12pt;
+        }
+        
+        .url-box {
+            background: #e8f4f8;
+            border: 2px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .url-text {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 11pt;
+            flex-grow: 1;
+        }
+        
+        .qr-code {
+            width: 60px;
+            height: 60px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8pt;
+            text-align: center;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .tip::before {
+            content: "💡 CONSEJO: ";
+            font-weight: bold;
+            color: #856404;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .warning::before {
+            content: "⚠️ IMPORTANTE: ";
+            font-weight: bold;
+            color: #721c24;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .data-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .data-item h4 {
+            color: #2c3e50;
+            font-size: 12pt;
+            margin-bottom: 8px;
+        }
+        
+        .data-item p {
+            color: #5a6c7d;
+            font-size: 10pt;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .checklist h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 14pt;
+        }
+        
+        .checklist-item {
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .checkbox {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #3498db;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .footer {
+            text-align: center;
+            border-top: 3px solid #2c3e50;
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            background: #e8f4f8;
+            border: 1px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .naics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .naics-table th,
+        .naics-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .naics-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .download-buttons {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .download-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PORTADA -->
+        <div class="header">
+            <h1>🏭 GUÍA DE CAPACITACIÓN</h1>
+            <div class="subtitle">Descarga de Datos de Industrias</div>
+            <div class="subtitle">U.S. Census Bureau</div>
+            <div class="date">Guía actualizada - Julio 2025</div>
+        </div>
+
+        <!-- TABLA DE CONTENIDOS -->
+        <div class="section">
+            <h2>📋 Tabla de Contenidos</h2>
+            <div style="columns: 2; column-gap: 30px;">
+                <p><strong>1.</strong> Introducción al Census Bureau ................... 2</p>
+                <p><strong>2.</strong> Acceso a las Páginas Web ...................... 3</p>
+                <p><strong>3.</strong> Navegación en el Sitio ........................ 4</p>
+                <p><strong>4.</strong> Búsqueda de Datos Específicos ................. 5</p>
+                <p><strong>5.</strong> Proceso de Descarga ........................... 6</p>
+                <p><strong>6.</strong> Formatos de Datos ............................. 7</p>
+                <p><strong>7.</strong> Consejos Avanzados ............................ 8</p>
+                <p><strong>8.</strong> Lista de Verificación ......................... 9</p>
+                <p><strong>9.</strong> Recursos y Contactos .......................... 10</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 1: INTRODUCCIÓN -->
+        <div class="section">
+            <h2>1. 🎯 Introducción al U.S. Census Bureau</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    ¿Qué es el U.S. Census Bureau?
+                </div>
+                <p>El U.S. Census Bureau es la agencia oficial de estadísticas del gobierno estadounidense que recopila y proporciona datos sobre la población, economía e industrias de Estados Unidos. Es la fuente más confiable para datos económicos y demográficos del país.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Tipos de Datos Disponibles sobre Industrias
+                </div>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <h4>📊 Economic Census</h4>
+                        <p>Datos completos cada 5 años sobre todas las industrias económicas</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>📈 Annual Business Survey</h4>
+                        <p>Encuestas anuales de empresas organizadas por industria</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>🏢 County Business Patterns</h4>
+                        <p>Estadísticas de empleos por condado e industria</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>📋 NAICS Classifications</h4>
+                        <p>Sistema de códigos de clasificación industrial</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip">
+                Los datos están organizados por códigos NAICS (North American Industry Classification System) que categorizan todas las industrias económicas de América del Norte.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 2: ACCESO -->
+        <div class="section">
+            <h2>2. 🌐 Acceso a las Páginas Web</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Página Principal del Census Bureau
+                </div>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                <p>Esta es la página principal del U.S. Census Bureau donde encontrarás acceso a todos los datos gubernamentales oficiales.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Portales Específicos para Datos de Industrias
+                </div>
+                
+                <strong>Portal Principal de Datos:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://data.census.gov</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>Economic Census (Datos Económicos Completos):</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/programs-surveys/economic-census.html</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>County Business Patterns:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/programs-surveys/cbp.html</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>Búsqueda de Códigos NAICS:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/naics/</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+            </div>
+            
+            <div class="warning">
+                Siempre verifica que estés en el sitio oficial (.gov) para garantizar la autenticidad y calidad de los datos descargados.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 3: NAVEGACIÓN -->
+        <div class="section">
+            <h2>3. 🧭 Navegación en el Sitio Web</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Usando data.census.gov (Método Recomendado)
+                </div>
+                <p>Esta es la forma más directa y eficiente de acceder a los datos:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Paso 1:</strong> Ve a data.census.gov</li>
+                    <li><strong>Paso 2:</strong> Utiliza la barra de búsqueda en la parte superior</li>
+                    <li><strong>Paso 3:</strong> Aplica filtros en el panel izquierdo para refinar resultados</li>
+                    <li><strong>Paso 4:</strong> Selecciona el conjunto de datos que necesitas</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Estructura de Menús Alternativos
+                </div>
+                <p><strong>Ruta Principal:</strong></p>
+                <p>Menú Principal → Business & Economy → Industry Statistics</p>
+                
+                <p><strong>Ruta Alternativa:</strong></p>
+                <p>Data → Browse by Topic → Business & Economy</p>
+                
+                <p><strong>Búsqueda Avanzada:</strong></p>
+                <p>Advanced Search → Filtros por industria, ubicación geográfica o año</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Filtros Más Útiles
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Survey/Program:</strong> Economic Census, County Business Patterns, etc.</li>
+                    <li><strong>Year:</strong> Selecciona el año más reciente disponible</li>
+                    <li><strong>Geography:</strong> Nacional, estatal, condado, área metropolitana</li>
+                    <li><strong>Topic:</strong> Business & Economy, específicamente</li>
+                </ul>
+            </div>
+            
+            <div class="tip">
+                Utiliza la función "Advanced Search" para búsquedas más específicas por industria, ubicación geográfica o rango de años específicos.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 4: BÚSQUEDA -->
+        <div class="section">
+            <h2>4. 🔍 Búsqueda de Datos Específicos</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Términos de Búsqueda Efectivos
+                </div>
+                <p><strong>Palabras clave más efectivas:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>"Economic Census"</strong> - Para datos completos de todas las industrias</li>
+                    <li><strong>"County Business Patterns"</strong> - Para datos organizados por ubicación</li>
+                    <li><strong>"NAICS [código]"</strong> - Para industrias específicas</li>
+                    <li><strong>"Annual Business Survey"</strong> - Para datos anuales recientes</li>
+                    <li><strong>"Industry Statistics"</strong> - Para búsquedas generales</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Códigos NAICS Más Comunes
+                </div>
+                <table class="naics-table">
+                    <thead>
+                        <tr>
+                            <th>Código NAICS</th>
+                            <th>Industria</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>23</td>
+                            <td>Construction</td>
+                            <td>Industria de la construcción</td>
+                        </tr>
+                        <tr>
+                            <td>31-33</td>
+                            <td>Manufacturing</td>
+                            <td>Industrias manufactureras</td>
+                        </tr>
+                        <tr>
+                            <td>44-45</td>
+                            <td>Retail Trade</td>
+                            <td>Comercio al por menor</td>
+                        </tr>
+                        <tr>
+                            <td>54</td>
+                            <td>Professional Services</td>
+                            <td>Servicios profesionales, científicos y técnicos</td>
+                        </tr>
+                        <tr>
+                            <td>72</td>
+                            <td>Accommodation & Food</td>
+                            <td>Alojamiento y servicios de comida</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Técnicas de Búsqueda Avanzada
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Búsquedas exactas:</strong> Usa comillas "County Business Patterns"</li>
+                    <li><strong>Combinaciones:</strong> "Economic Census" AND "manufacturing"</li>
+                    <li><strong>Wildcards:</strong> Usa * para búsquedas amplias "retail*"</li>
+                    <li><strong>Filtros de fecha:</strong> Aplica filtros por año para datos recientes</li>
+                </ul>
+            </div>
+            
+            <div class="tip">
+                Si buscas una industria específica, primero busca su código NAICS en census.gov/naics/ para obtener resultados más precisos y completos.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 5: DESCARGA -->
+        <div class="section">
+            <h2>5. ⬇️ Proceso de Descarga</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Selección del Conjunto de Datos
+                </div>
+                <p><strong>Pasos para seleccionar datos:</strong></p>
+                <ol style="margin-left: 20px;">
+                    <li>Haz clic en el título del dataset en los resultados de búsqueda</li>
+                    <li>Revisa cuidadosamente la descripción y metadatos</li>
+                    <li>Verifica el año de publicación y cobertura geográfica</li>
+                    <li>Confirma que incluye las variables/columnas que necesitas</li>
+                    <li>Revisa el tamaño estimado del archivo</li>
+                </ol>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Opciones de Descarga Disponibles
+                </div>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <h4>📊 Download Table</h4>
+                        <p>Descarga tablas pre-formateadas</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>📋 Download Data</h4>
+                        <p>Descarga datos raw/sin procesar</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>🔗 API Access</h4>
+                        <p>Para desarrolladores avanzados</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>📱 Mobile View</h4>
+                        <p>Vista optimizada para móviles</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Personalización Antes de Descargar
+                </div>
+                <p><strong>Opciones de personalización disponibles:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Filtrar columnas:</strong> Selecciona solo las variables que necesitas</li>
+                    <li><strong>Filtrar filas:</strong> Limita por geografía (estado, condado) o criterios específicos</li>
+                    <li><strong>Elegir formato:</strong> CSV, Excel (.xlsx), JSON, XML</li>
+                    <li><strong>Configurar opciones:</strong> Headers, separadores, codificación de caracteres</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                Los archivos de datos pueden ser extremadamente grandes (varios GB). Considera aplicar filtros geográficos y de columnas antes de descargar para reducir significativamente el tamaño del archivo.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 6: FORMATOS -->
+        <div class="section">
+            <h2>6. 📄 Formatos de Datos Disponibles</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Formatos Principales y Sus Usos
+                </div>
+                <table class="naics-table">
+                    <thead>
+                        <tr>
+                            <th>Formato</th>
+                            <th>Mejor Para</th>
+                            <th>Ventajas</th>
+                            <th>Desventajas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CSV</strong></td>
+                            <td>Excel, análisis general</td>
+                            <td>Universal, pequeño tamaño</td>
+                            <td>Sin formato visual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Excel (.xlsx)</strong></td>
+                            <td>Análisis en Microsoft Excel</td>
+                            <td>Formateado, metadatos incluidos</td>
+                            <td>Archivos más grandes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JSON</strong></td>
+                            <td>Desarrolladores, APIs</td>
+                            <td>Estructurado, programación</td>
+                            <td>Difícil de leer manualmente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PDF</strong></td>
+                            <td>Reportes, presentaciones</td>
+                            <td>Formateado, imprimible</td>
+                            <td>No editable, datos limitados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Recomendaciones por Tipo de Análisis
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Para análisis estadísticos:</strong> CSV (máxima compatibilidad)</li>
+                    <li><strong>Para presentaciones ejecutivas:</strong> PDF o Excel formateado</li>
+                    <li><strong>Para bases de datos:</strong> CSV o JSON</li>
+                    <li><strong>Para automatización:</strong> JSON o XML</li>
+                    <li><strong>Para compartir con colegas:</strong> Excel (.xlsx)</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Consideraciones Técnicas
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Tamaño de archivo:</strong> CSV < JSON < Excel < PDF</li>
+                    <li><strong>Velocidad de descarga:</strong> CSV es el más rápido</li>
+                    <li><strong>Compatibilidad:</strong> CSV funciona en cualquier software</li>
+                    <li><strong>Metadatos:</strong> Excel y JSON preservan mejor la información descriptiva</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 7: CONSEJOS AVANZADOS -->
+        <div class="section">
+            <h2>7. 💡 Consejos Avanzados</h2>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Optimización de Búsquedas
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Búsquedas exactas:</strong> Usa comillas para términos específicos</li>
+                    <li><strong>Operadores booleanos:</strong> AND, OR, NOT para combinar términos</li>
+                    <li><strong>Filtros temporales:</strong> Aplica rangos de años específicos</li>
+                    <li><strong>Jerarquía geográfica:</strong> Comienza con nivel nacional, luego baja a estatal/condado</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Gestión de Archivos Grandes
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Descarga segmentada:</strong> Por estado o región geográfica</li>
+                    <li><strong>Filtrado temporal:</strong> Descarga año por año si es necesario</li>
+                    <li><strong>Selección de columnas:</strong> Solo variables esenciales</li>
+                    <li><strong>Formato óptimo:</strong> CSV para archivos grandes</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Verificación de Calidad de Datos
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Metadatos:</strong> Siempre revisa la documentación técnica</li>
+                    <li><strong>Fechas de actualización:</strong> Verifica cuándo se publicaron los datos</li>
+                    <li><strong>Metodología:</strong> Comprende cómo se recopilaron los datos</li>
+                    <li><strong>Limitaciones:</strong> Lee sobre restricciones y consideraciones especiales</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">4</span>
+                    Recursos Adicionales Importantes
+                </div>
+                <strong>Centro de Ayuda:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://ask.census.gov/</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>Documentación Técnica:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/programs-surveys/economic-census/guidance.html</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>Tutoriales en Video:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/data/training-workshops.html</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+            </div>
+            
+            <div class="warning">
+                Siempre verifica que estés utilizando la versión más reciente de los datos y que comprendas completamente las limitaciones metodológicas de cada dataset antes de realizar análisis críticos.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 8: LISTA DE VERIFICACIÓN -->
+        <div class="section">
+            <h2>8. ✅ Lista de Verificación Completa</h2>
+            
+            <div class="checklist">
+                <h3>📋 ANTES DE EMPEZAR:</h3>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Identificar qué tipo específico de datos de industria necesito
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Determinar el nivel geográfico requerido (nacional, estatal, condado, MSA)
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Decidir el rango de años necesario para el análisis
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Investigar y anotar los códigos NAICS relevantes
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Definir las variables/columnas específicas que necesito
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <h3>🔍 DURANTE LA BÚSQUEDA:</h3>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Acceder a data.census.gov (página principal de datos)
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Aplicar filtros apropiados (año, geografía, programa de encuesta)
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Revisar detalladamente la descripción y metadatos del dataset
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Verificar que los datos cubren exactamente lo que necesito
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Confirmar la metodología y limitaciones del estudio
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Revisar la fecha de publicación y última actualización
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <h3>⬇️ ANTES DE DESCARGAR:</h3>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Seleccionar únicamente las columnas/variables necesarias
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Aplicar filtros geográficos para reducir tamaño si es necesario
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Elegir el formato de archivo más apropiado (CSV, Excel, JSON, etc.)
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Verificar el tamaño estimado del archivo antes de la descarga
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Confirmar la velocidad y estabilidad de mi conexión a internet
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <h3>📂 DESPUÉS DE DESCARGAR:</h3>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Verificar que el archivo se descargó correctamente y completamente
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Abrir y revisar la estructura y calidad de los datos
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Guardar la documentación técnica y metadatos por separado
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Documentar claramente la fuente, fecha de descarga y versión
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Crear respaldo del archivo original antes de cualquier modificación
+                </div>
+                <div class="checklist-item">
+                    <span class="checkbox">☐</span> Verificar la integridad de los datos (valores faltantes, inconsistencias)
+                </div>
+            </div>
+            
+            <div class="tip">
+                Imprime esta lista de verificación y márcala durante tu proceso de descarga. Esto garantizará que no omitas ningún paso crucial y que obtengas datos de la más alta calidad.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECCIÓN 9: RECURSOS Y CONTACTOS -->
+        <div class="section">
+            <h2>9. 📞 Recursos y Contactos</h2>
+            
+            <div class="contact-info">
+                <h3>🎯 Contactos Principales del U.S. Census Bureau</h3>
+                
+                <p><strong>📧 Soporte Técnico Principal:</strong></p>
+                <div class="url-box">
+                    <div class="url-text">clmso.users.support@census.gov</div>
+                    <div class="qr-code">Email<br>QR</div>
+                </div>
+                
+                <p><strong>🌐 Centro de Ayuda en Línea:</strong></p>
+                <div class="url-box">
+                    <div class="url-text">https://ask.census.gov/</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <p><strong>📞 Línea de Ayuda Telefónica:</strong></p>
+                <p style="font-size: 14pt; font-weight: bold; text-align: center; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+                    1-800-923-8282
+                </p>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Horario: Lunes a Viernes, 8:00 AM - 8:00 PM (Eastern Time)
+                </p>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Recursos Adicionales de Capacitación
+                </div>
+                
+                <strong>Webinars y Talleres:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/data/training-workshops.html</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>Guías de Usuario en PDF:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.census.gov/programs-surveys/economic-census/guidance.html</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+                
+                <strong>Videos Tutoriales en YouTube:</strong>
+                <div class="url-box">
+                    <div class="url-text">https://www.youtube.com/user/uscensusbureau</div>
+                    <div class="qr-code">QR<br>Code</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Páginas Especializadas por Tipo de Datos
+                </div>
+                
+                <table class="naics-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo de Datos</th>
+                            <th>URL Especializada</th>
+                            <th>Frecuencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Economic Census</td>
+                            <td>census.gov/programs-surveys/economic-census.html</td>
+                            <td>Cada 5 años</td>
+                        </tr>
+                        <tr>
+                            <td>County Business Patterns</td>
+                            <td>census.gov/programs-surveys/cbp.html</td>
+                            <td>Anual</td>
+                        </tr>
+                        <tr>
+                            <td>Annual Business Survey</td>
+                            <td>census.gov/programs-surveys/abs.html</td>
+                            <td>Anual</td>
+                        </tr>
+                        <tr>
+                            <td>Business Dynamics Statistics</td>
+                            <td>census.gov/programs-surveys/bds.html</td>
+                            <td>Anual</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Comunidades y Foros de Usuarios
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Census Data Users Forum:</strong> Comunidad oficial de usuarios</li>
+                    <li><strong>LinkedIn Groups:</strong> Busca "Census Data Users" y "Economic Census"</li>
+                    <li><strong>Reddit:</strong> r/datasets y r/statistics tienen usuarios activos</li>
+                    <li><strong>Stack Overflow:</strong> Para preguntas técnicas sobre APIs</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PIE DE PÁGINA -->
+        <div class="footer">
+            <h3>🎓 Capacitación Completada</h3>
+            <p>Ahora posees las competencias necesarias para descargar y utilizar datos de industrias del U.S. Census Bureau de manera profesional y eficiente.</p>
+            
+            <div class="download-buttons no-print">
+                <button class="download-btn" onclick="window.print()">🖨️ Imprimir Guía Completa</button>
+                <button class="download-btn" onclick="downloadPDF()">📄 Generar PDF</button>
+                <button class="download-btn" onclick="copyLinks()">🔗 Copiar Todos los Enlaces</button>
+            </div>
+            
+            <div class="tip">
+                <strong>Recuerda:</strong> Los datos del U.S. Census Bureau son completamente gratuitos, de alta calidad y se actualizan regularmente. Son la fuente más confiable para análisis económicos, estudios de mercado y investigación académica sobre industrias estadounidenses.
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #3498db; font-size: 10pt; color: #666;">
+                <p><strong>Documento generado:</strong> Julio 2025</p>
+                <p><strong>Versión:</strong> 1.0 - Optimizada para PDF</p>
+                <p><strong>Fuente:</strong> U.S. Census Bureau (census.gov)</p>
+                <p><strong>Uso recomendado:</strong> Capacitación empresarial y académica</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function downloadPDF() {
+            alert('💡 Para generar un PDF:\n\n1. Presiona Ctrl+P (Cmd+P en Mac)\n2. Selecciona "Guardar como PDF"\n3. En opciones avanzadas, selecciona "Más configuraciones"\n4. Marca "Gráficos de fondo" para preservar el diseño\n\n¡Todos los enlaces estarán incluidos como texto copiable!');
+        }
+        
+        function copyLinks() {
+            const links = [
+                'https://www.census.gov',
+                'https://data.census.gov',
+                'https://www.census.gov/programs-surveys/economic-census.html',
+                'https://www.census.gov/programs-surveys/cbp.html',
+                'https://www.census.gov/naics/',
+                'https://ask.census.gov/',
+                'https://www.census.gov/programs-surveys/economic-census/guidance.html',
+                'https://www.census.gov/data/training-workshops.html',
+                'https://www.youtube.com/user/uscensusbureau',
+                'clmso.users.support@census.gov'
+            ];
+            
+            const linkText = links.join('\n');
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(linkText).then(() => {
+                    alert('✅ ¡Enlaces copiados al portapapeles!\n\nPuedes pegarlos en cualquier documento.');
+                });
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = linkText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('✅ ¡Enlaces copiados al portapapeles!');
+            }
+        }
+        
+        // Funcionalidad mejorada para impresión
+        window.addEventListener('beforeprint', function() {
+            document.title = 'Guía Census Bureau - Descarga de Datos de Industrias';
+        });
+        
+        // Generar números de página para impresión
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @media print {
+                    @page {
+                        margin: 2cm;
+                        @bottom-center {
+                            content: "Página " counter(page) " de " counter(pages);
+                        }
+                        @top-center {
+                            content: "Guía: Descarga de Datos de Industrias - U.S. Census Bureau";
+                            font-size: 10pt;
+                            color: #666;
+                        }
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
